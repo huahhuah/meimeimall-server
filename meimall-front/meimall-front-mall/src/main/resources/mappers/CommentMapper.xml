@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.meimall.front.mall.dao.persist.mapper.CommentMapper">
+
+    <!-- List<CommentListItemVO> list(Long goodsId); -->
+    <select id="list" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            mall_comment
+        ORDER BY
+            id DESC
+    </select>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, author_id, author_name, goods_id, type,
+            content, gmt_create
+        </if>
+    </sql>
+
+    <resultMap id="ListResultMap"
+               type="cn.tedu.meimall.front.mall.pojo.vo.CommentListItemVO">
+        <id column="id" property="id"/>
+        <result column="author_id" property="authorId"/>
+        <result column="author_name" property="authorName"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="type" property="type"/>
+        <result column="content" property="content"/>
+        <result column="gmt_create" property="gmtCreate"/>
+    </resultMap>
+
+</mapper>

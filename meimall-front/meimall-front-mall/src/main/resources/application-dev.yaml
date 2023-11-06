@@ -1,0 +1,37 @@
+# ######################## #
+# 當前文件是【開發環境】中的配置 #
+# ######################## #
+
+# 服務器配置
+server:
+  port: 19282
+
+# 連接數據庫的配置
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/meimei_mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    druid:
+      # Druid數據庫連接池的配置：初始化連接數
+      initial-size: 2
+      # Druid數據庫連接池的配置：最大激活數量
+      max-active: 5
+  redis:
+    host: localhost
+    port: 6379
+    username: ~
+    password: ~
+
+# 日誌的配置
+logging:
+  level:
+    cn.tedu: debug
+
+# 自定義配置
+meimall:
+  jwt:
+    secret-key: fNesMDkqrJFdsfDSwAbFLJ8SnsHJ438AF72D73aKJSmfdsafdLKKAFKDSJ
+    duration-in-minute: 43200
+  dao:
+    default-query-page-size: 5

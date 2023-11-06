@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.meimall.basic.dao.persist.mapper.DistrictMapper">
+
+    <!-- List<DistrictListItemVO> listByParent(Long id); -->
+    <select id="listByParent" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            dict_district
+        WHERE
+            parent_id=#{parentId}
+        ORDER BY
+            sort
+    </select>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, code, concat(name, suffix) AS name, pinyin
+        </if>
+    </sql>
+
+    <resultMap id="ListResultMap"
+               type="cn.tedu.meimall.common.pojo.po.DistrictSimplePO">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="pinyin" property="pinyin"/>
+    </resultMap>
+
+</mapper>

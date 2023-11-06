@@ -1,0 +1,45 @@
+### 查詢Elasticsearch的狀態，通常用於檢查Elasticearch是否可用
+GET http://localhost:9200
+
+### 測試分詞 -- 英文
+GET http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "text": "nice to meet you!"
+}
+
+### 測試分詞 -- 中文
+GET http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "text": "很高興認識你！"
+}
+
+### 測試分詞 -- 中文 -- ik_smart
+GET http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "analyzer": "ik_smart",
+  "text": "很高興認識你！"
+}
+
+### 測試分詞 -- 中文 -- ik_max_word
+GET http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "analyzer": "ik_max_word",
+  "text": "很高興認識你！"
+}
+
+### 測試分詞 -- 中文 -- ik_max_word -- 測試自造詞（需配置ik分詞器且重啟es）
+GET http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "analyzer": "ik_max_word",
+  "text": "這真的是泰酷辣！"
+}

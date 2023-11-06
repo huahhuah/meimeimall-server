@@ -1,0 +1,155 @@
+### 删除索引
+DELETE http://localhost:9200/index_search
+
+### 自定義索引及其文檔的屬性和數據類型
+PUT http://localhost:9200/index_search
+Content-Type: application/json; charset=UTF-8
+
+{
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "long"
+      },
+      "title": {
+        "type": "text",
+        "analyzer": "ik_max_word"
+      },
+      "description": {
+        "type": "keyword"
+      },
+      "sort": {
+        "type": "long"
+      },
+      "price": {
+        "type": "long"
+      }
+    }
+  }
+}
+
+### 查看某個索引中的基本信息
+GET http://localhost:9200/index_search
+
+### 查看某個索引中的所有文檔
+GET http://localhost:9200/index_search/_search
+
+### 簡單搜索：根據關鍵字執行簡單的搜索：搜索title中包含“龍井”的數據
+GET http://localhost:9200/index_search/_search?q=title:龍井
+
+### 簡單搜索：根據關鍵字執行簡單的搜索：搜索title中包含“精裝”的數據，注意，包含“散裝”或其它“?裝”的數據也會出現在結果中
+GET http://localhost:9200/index_search/_search?q=title:精裝
+
+### 簡單搜索：根據關鍵字執行簡單的搜索：搜索description中包含“收藏珍品”的數據
+GET http://localhost:9200/index_search/_search?q=description:珍品
+
+### 高級搜索：自定義query，在query屬性下配置match屬性，在match屬性下再配置搜索的字段名與關鍵字
+GET http://localhost:9200/index_search/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "match": {
+      "title": "龍井"
+    }
+  }
+}
+
+### 高級搜索：多條件搜索：自定義query，在query屬性下配置bool屬性，在bool屬性下再配置must，must的值是數組，數組元素就是匹配規則，must下的多個規則必须同時匹配才能被搜索到
+### 除了must以外，還可以是should，should只需要匹配其中任意1個條件即可
+### 另外，還可以是must_not，即不允許是某種規則
+### must >>> AND
+### should >>> OR
+### must_not >>> !=
+GET http://localhost:9200/index_search/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "title": "龍井"
+          }
+        },
+        {
+          "match": {
+            "description": "送禮必備"
+          }
+        }
+      ]
+    }
+  }
+}
+
+### 高級搜索：查詢指定字段的數據，在query同級配置_source，此屬性的值是數組，用於指定字段列表
+GET http://localhost:9200/index_search/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "match_all": {}
+  },
+  "_source": [
+    "id",
+    "title",
+    "price"
+  ]
+}
+
+### 高級搜索：指定排序，在query同級配置sort屬性，在sort屬性中配置排序規則，默認根據字段值升序排列，也可以配置order屬性來指定規則，取值為desc時為降序
+GET http://localhost:9200/index_search/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "match_all": {}
+  },
+  "sort": [
+    {
+      "sort": {},
+      "id": {
+        "order": "desc"
+      }
+    }
+  ]
+}
+
+### 高級搜索：分頁搜索，在query同級配置from和size屬性
+GET http://localhost:9200/index_search/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "match_all": {}
+  },
+  "sort": [
+    {
+      "id": {}
+    }
+  ],
+  "from": 1,
+  "size": 3
+}
+
+### 高級搜索：高亮顯示，在query同級配置highlight屬性進行配置，在highlight中配置fields屬性，可以指定對應的字段
+### 執行搜索後，匹配的結果中會出現同級的highlight數據，其中搜索的關鍵字默認會被<em>標籤框住，後續在客户端拿到此結果後可以對<em>標籤設計CSS樣式
+### 或者，在配置高亮搜索時，還可以在highlight標籤下配置pre_tags和post_tags屬性，以替換<em>和</em>標籤
+GET http://localhost:9200/index_search/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "match": {
+      "title": "精裝"
+    }
+  },
+  "highlight": {
+    "fields": {
+      "title": {}
+    },
+    "pre_tags": "<font style='color: red;'>",
+    "post_tags": "</font>"
+  }
+}

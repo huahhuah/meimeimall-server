@@ -1,0 +1,21 @@
+### 删除索引
+DELETE http://localhost:9200/mall_goods
+
+### 查看索引狀態
+GET http://localhost:9200/mall_goods
+
+### 查看索引中所有文档
+GET http://localhost:9200/mall_goods/_search
+
+### 查看索引中所有文档的title
+GET http://localhost:9200/mall_goods/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "match_all": {}
+  },
+  "_source": [
+    "title"
+  ]
+}

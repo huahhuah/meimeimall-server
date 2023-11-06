@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 模塊版本，取值相對固定 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 父級項目 -->
+    <parent>
+        <groupId>cn.tedu</groupId>
+        <artifactId>meimall-server</artifactId>
+        <version>2.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!-- 當前項目的信息 -->
+    <artifactId>meimall-attachment</artifactId>
+
+    <!-- 當前項目的依賴項 -->
+    <dependencies>
+        <!-- 當前項目的公共模塊 -->
+        <dependency>
+            <groupId>cn.tedu</groupId>
+            <artifactId>meimall-common</artifactId>
+        </dependency>
+        <!-- Spring Boot支持Spring MVC的依賴項 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- Spring Boot支持Spring Security的依賴項，用於處理認證與授權 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!-- Spring Boot支持Redis編程 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- Knife4j Spring Boot：在線API文檔 -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+        </dependency>
+        <!-- JJWT（Java JWT） -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
+        <!-- fastjson：實現對象與JSON的相互轉換 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <!-- Lombok的依賴項，主要用於簡化POJO類的編寫 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- hutool：小工具集合 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

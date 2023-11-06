@@ -1,0 +1,66 @@
+# ############################################################################################### #
+# 此文件是【開發環境】的配置文件，必須在主配置中通過spring.profiles.active激活此配置，此文件中的各配置才會生效 #
+# ############################################################################################### #
+
+# 服務器的配置
+server:
+  # 服務占用的通訊埠
+  port: 19082
+
+# Spring的配置
+spring:
+  # servlet配置
+  servlet:
+    # 上傳配置
+    multipart:
+      # 最大文件尺寸
+      max-file-size: 500MB
+      # 最大請求尺寸
+      max-request-size: 500MB
+  # WEB配置
+  web:
+    # 靜態資源配置
+    resources:
+      # 靜態資源文件夾，如果多個，使用英文的逗號分隔，本地路徑必須使用 file: 作為前綴
+      static-locations: classpath:static, file:${meimall.upload.root-dir-name}
+
+# 自定義配置
+meimall:
+  # 文件上傳
+  upload:
+    # 對外訪問的主機，必須使用 / 作為最後一個字元
+    host: http://localhost:${server.port}/
+    # 上傳的根級文件夾名稱，必須使用 / 作為最後一個字元
+    root-dir-name: E:/meimall-static/
+    # 上傳的文件夾名稱，也會作為訪問資源時的URL第1級目錄名，必須使用 / 作為最後一个字元
+    base-dir-name: resources/
+    # 文章圖片
+    article-image:
+      # 允許的文件類型，必須配置文件類型的MIME值，多種類型使用英文的逗號分隔
+      types: image/jpeg, image/png, image/gif
+      # 最大尺寸，單位：MB
+      max-size: 5
+    # 商品圖片
+    goods-image:
+      # 允許的文件類型，必須配置文件類型的MIME值，多種類型使用英文的逗號分隔
+      types: image/jpeg, image/png, image/gif
+      # 最大尺寸，單位：MB
+      max-size: 5
+    # 用户頭像
+    user-avatar:
+      types: image/jpeg, image/png, image/gif
+      # 最大尺寸，單位：MB
+      max-size: 2
+  # JWT的配置
+  jwt:
+    # JWT的有效時長，以分鐘為單位
+    duration-in-minute: 86400
+    # JWT的secretKey
+    secret-key: fNesMDkqrJFdsfDSwAbFLJ8SnsHJ438AF72D73aKJSmfdsafdLKKAFKDSJ
+
+# 日誌配置
+logging:
+  # 顯示級别
+  level:
+    # 某根包（配置將應用於此包及子孫包）的顯示級别
+    cn.tedu.meimall: trace

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.meimall.front.content.dao.persist.mapper.CommentMapper">
+
+    <!-- List<CommentListItemVO> listByArticle(Long articleId); -->
+    <select id="listByArticle" resultMap="ListResultMap">
+        SELECT
+            <include refid="ListQueryFields"/>
+        FROM
+            content_comment
+        WHERE
+            resource_type=0
+            AND resource_id=#{articleId}
+            AND content_comment.check_state=1
+            AND content_comment.is_display=1
+        ORDER BY
+            content_comment.floor ASC,
+            content_comment.id DESC
+    </select>
+
+    <sql id="ListQueryFields">
+        <if test="true">
+            id, author_id, author_name, content, ip,
+            floor, up_count, down_count, gmt_create
+        </if>
+    </sql>
+
+    <resultMap id="ListResultMap"
+               type="cn.tedu.meimall.front.content.pojo.vo.CommentListItemVO">
+        <id column="id" property="id"/>
+        <result column="author_id" property="authorId"/>
+        <result column="author_name" property="authorName"/>
+        <result column="content" property="content"/>
+        <result column="ip" property="ip"/>
+        <result column="floor" property="floor"/>
+        <result column="up_count" property="upCount"/>
+        <result column="down_count" property="downCount"/>
+        <result column="gmt_create" property="gmtCreate"/>
+    </resultMap>
+
+</mapper>

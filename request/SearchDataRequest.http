@@ -1,0 +1,59 @@
+### 添加文檔--測試數據1
+PUT http://localhost:9200/index_search/_doc/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "散裝龍井",
+  "description": "好喝又實惠",
+  "sort": 160,
+  "price": 300
+}
+
+### 添加文檔--測試數據2
+PUT http://localhost:9200/index_search/_doc/2
+Content-Type: application/json
+
+{
+  "id": 2,
+  "title": "大红袍大禮包",
+  "description": "性價比之王",
+  "sort": 190,
+  "price": 688
+}
+
+### 添加文檔--測試數據3
+PUT http://localhost:9200/index_search/_doc/3
+Content-Type: application/json
+
+{
+  "id": 3,
+  "title": "龍井禮盒",
+  "description": "送禮必備",
+  "sort": 130,
+  "price": 888
+}
+
+### 添加文檔--測試數據4
+PUT http://localhost:9200/index_search/_doc/4
+Content-Type: application/json
+
+{
+  "id": 4,
+  "title": "精裝陳年老普洱",
+  "description": "收藏珍品",
+  "sort": 150,
+  "price": 988
+}
+
+### 添加文檔--測試數據5
+PUT http://localhost:9200/index_search/_doc/5
+Content-Type: application/json
+
+{
+  "id": 5,
+  "title": "精裝鐵觀音大禮包",
+  "description": "家中常備",
+  "sort": 160,
+  "price": 700
+}

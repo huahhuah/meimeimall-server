@@ -1,0 +1,52 @@
+# ############################################################################################### #
+# 此文件是【開發環境】的配置文件，必須在主配置中通過spring.profiles.active激活此配置，此文件中的各配置才會生效 #
+# ############################################################################################### #
+
+# 服務器的配置
+server:
+  # 服務占用的通訊埠
+  port: 19182
+
+# 自定義配置
+meimall:
+  # 資料庫的資料源的配置
+  datasource:
+    # 資料庫主機
+    host: localhost
+    # 資料庫通訊埠
+    port: 3306
+    # 資料庫用户名
+    username: root
+    # 資料庫密碼
+    password: root
+    # 初始化連接數量
+    initial-size: 5
+    # 最大激活數量
+    max-active: 20
+  # Redis配置
+  redis:
+    # 主機
+    host: localhost
+    # 通訊埠
+    port: 6379
+    # 用户名
+    username: ~
+    # 密碼
+    password: ~
+  # 資料訪問的相關配置
+  dao:
+    # 查詢資料時，默認的每頁記錄數，建議值為10~30之間
+    default-query-page-size: 5
+  # JWT的配置
+  jwt:
+    # JWT的有效時長，以分鐘為單位
+    duration-in-minute: 86400
+    # JWT的secretKey
+    secret-key: fNesMDkqrJFdsfDSwAbFLJ8SnsHJ438AF72D73aKJSmfdsafdLKKAFKDSJ
+
+# 日誌配置
+logging:
+  # 顯示級别
+  level:
+    # 某根包（配置將應用於此包及子孫包）的顯示級别
+    cn.tedu.meimall: trace

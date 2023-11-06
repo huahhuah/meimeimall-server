@@ -1,0 +1,56 @@
+### 添加文檔（使用ES隨機生成的ID值）
+POST http://localhost:9200/index_crud/_doc
+Content-Type: application/json
+
+{
+  "id": 997,
+  "title": "2022新茶上市，賣得可好了",
+  "sort": 166
+}
+
+### 添加文檔（自行指定ID值）
+PUT http://localhost:9200/index_crud/_doc/Tea9527
+Content-Type: application/json
+
+{
+  "id": 999,
+  "title": "2023老茶上市，賣得也相當不错",
+  "sort": 199
+}
+
+### 根據ID删除文檔
+DELETE http://localhost:9200/index_crud/_doc/Tea9527
+
+### 删除索引
+DELETE http://localhost:9200/index_crud
+
+### 修改文檔（更新整篇文檔）
+PUT http://localhost:9200/index_crud/_doc/Tea9527
+Content-Type: application/json
+
+{
+  "id": 999,
+  "title": "2023老茶上市，賣得也相當不错",
+  "sort": 199,
+  "description": "這個老茶味道很好，强烈推薦！"
+}
+
+### 修改文檔（局部修改）
+POST http://localhost:9200/index_crud/_doc/Tea9527/_update
+Content-Type: application/json
+
+{
+  "doc": {
+    "sort": 189,
+    "description": "老茶和新茶味道還是挺不一樣，要不，買個试试？"
+  }
+}
+
+### 查看某個索引中的基本信息
+GET http://localhost:9200/index_crud
+
+### 查看某個索引中的所有文檔
+GET http://localhost:9200/index_crud/_search
+
+### 根据ID訪問文檔
+GET http://localhost:9200/index_crud/_doc/Tea9527
