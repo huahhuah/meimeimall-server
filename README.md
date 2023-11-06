@@ -56,7 +56,7 @@
 
 本項目將分為2個專案來開發，分别是前臺、後端。
 
-前臺倉庫：
+前臺倉庫： https://github.com/huahhuah/meimall-admin-client.git
 
-後端倉庫：
+
 
